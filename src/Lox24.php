@@ -103,7 +103,7 @@ class Lox24
 
         try {
             return $this->httpClient()->post($endPointUrl, [
-                'form_data' => $params,
+                'form_params' => $params,
             ]);
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::lox24RespondedWithAnError($exception);
