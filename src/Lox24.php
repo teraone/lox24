@@ -90,15 +90,15 @@ class Lox24
             $params['from']  = $this->from;
         }
 
-        $params['account'] = $this->accountId;
-        $params['passwordHash'] = $this->passwordHash;
+        $params['konto'] = $this->accountId;
+        $params['password'] = $this->passwordHash;
 
 
         $endPointUrl = 'https://www.lox24.eu/API/httpsms.php';
 
         try {
             return $this->httpClient()->post($endPointUrl, [
-                'form_params' => $params,
+                'form_data' => $params,
             ]);
         } catch (ClientException $exception) {
             throw CouldNotSendNotification::lox24RespondedWithAnError($exception);

@@ -2,8 +2,6 @@
 
 namespace NotificationChannels\Lox24;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\RoutesNotifications;
 use NotificationChannels\Lox24\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 
@@ -53,7 +51,7 @@ class Lox24Channel
 
         // SimpleXML Error Handling
         $use_errors = libxml_use_internal_errors(true);
-        $responseBody = simplexml_load_string($response->getBody());
+        $responseBody = simplexml_load_string((string)$response->getBody());
         if (false === $responseBody) {
             throw CouldNotSendNotification::lox24RespondedWithAnError(new \Exception('Could not parse response XML'));
         }
