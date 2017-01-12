@@ -17,15 +17,19 @@ class Lox24
     /** @var null|string Lox24 Password Hash. */
     protected $passwordHash = null;
 
+    /** @var null|string Sender Name. */
+    protected $from = null;
+
     /**
      * @param null            $accountId
      * @param null            $password
      * @param HttpClient|null $httpClient
      */
-    public function __construct($accountId = null, $password = null, HttpClient $httpClient = null)
+    public function __construct($accountId = null, $password = null,  $from, HttpClient $httpClient = null)
     {
         $this->accountId    = $accountId;
         $this->passwordHash = md5($password);
+        $this->from         = $from;
         $this->http         = $httpClient;
     }
 
@@ -79,8 +83,11 @@ class Lox24
             throw new CouldNotSendNotification('You must provide your Lox24 Account ID to make any API requests.');
         }
 
-        if (empty($this->accountId)) {
+        if (empty($this->passwordHash)) {
             throw new CouldNotSendNotification('You must provide your Lox24 Password to make any API requests.');
+        }
+        if ($this->from !== null && $params['from'] === null) {
+            $params['from']  = $this->from;
         }
 
         $params['account'] = $this->accountId;

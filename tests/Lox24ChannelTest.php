@@ -72,7 +72,7 @@ class Lox24ChannelTest extends \PHPUnit_Framework_TestCase
                 ]
             )->andReturn(new Response(200,[],$this->responseSuccess));
 
-        $lox24 = new Lox24('123456', 123456, $client);
+        $lox24 = new Lox24('123456', 123456, null, $client);
 
         $channel = new Lox24Channel($lox24);
         $channel->send(new TestNotifiable(), new TestNotification());

@@ -14,11 +14,10 @@ class Lox24ServiceProvider extends ServiceProvider
         $this->app->when(Lox24Channel::class)
             ->needs(Lox24::class)
             ->give(function () {
-                $lox24Config = config('broadcasting.connections.lox24');
-
-                return new Lox24Channel(
-                    $lox24Config['accountId'],
-                    $lox24Config['password']
+                return new Lox24(
+                    config('broadcasting.connections.lox24.accountID'),
+                    config('broadcasting.connections.lox24.password'),
+                    config('broadcasting.connections.lox24.from')
                 );
             });
     }

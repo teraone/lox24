@@ -44,6 +44,7 @@ Add your Lox24 Account ID and your Lox24 password to your broadcasting config:
         'lox24' => [
             'accountId' => env('LOX24_ACCOUNT_ID'),
             'password' => env('LOX24_PASSWORD'),
+            'from' => env('LOX24_FROM'), // optional sender name
         ]
 ```
 
@@ -88,10 +89,11 @@ public function routeNotificationForLox24()
 
 ### Available methods
 
-- `setText('')`: Accepts a string value for the SMS Text.
-- `setTo('')`: Accepts a string value with the receiver phone number.
-- `setFrom('')`: Accepts a string value (max 11 characters) with a sender name which will be displayed on receivers phone as sender
-- `testOnly('')`: Can be used for testing, no SMS will be sent
+- `setText('hello you!')`: Accepts a string value for the SMS Text.
+- `setTo('0049123456789')`: Accepts a string value with the receiver phone number.
+- `setFrom('sendername')`: Accepts a string value (max 11 characters) with a sender name which will be displayed on receivers phone as sender
+- `testOnly()`: Can be used for testing, no SMS will be sent
+- `sendAt(\DateTime $time)`: Can be used to schedule sending
 
 ## Changelog
 
