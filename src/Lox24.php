@@ -88,6 +88,11 @@ class Lox24
         }
         if ($this->from !== null && $params['from'] === null) {
             $params['from']  = $this->from;
+            $params['service'] = Lox24Message::LOX24_SERVICE_PRO;
+        }
+
+        if (!isset($params['service'])) {
+            $params['service'] = Lox24Message::LOX24_SERVICE_ECONOMY;
         }
 
         $params['konto'] = $this->accountId;
