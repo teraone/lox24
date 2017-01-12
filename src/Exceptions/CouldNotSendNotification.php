@@ -1,11 +1,13 @@
 <?php
 
-namespace NotificationChannels\:channel_namespace\Exceptions;
+namespace NotificationChannels\Lox24\Exceptions;
 
 class CouldNotSendNotification extends \Exception
 {
-    public static function serviceRespondedWithAnError($response)
+
+
+    public static function lox24RespondedWithAnError(\Exception $exception)
     {
-        return new static("Descriptive error message.");
+        return new static($exception->getMessage());
     }
 }
