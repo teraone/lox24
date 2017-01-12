@@ -3,6 +3,7 @@
 namespace NotificationChannels\Lox24;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\RoutesNotifications;
 use NotificationChannels\Lox24\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 
@@ -22,12 +23,12 @@ class Lox24Channel
     /**
      * Send the given notification.
      *
-     * @param Notifiable $notifiable
+     * @param RoutesNotifications $notifiable
      * @param Notification $notification
      *
      * @throws CouldNotSendNotification
      */
-    public function send(Notifiable $notifiable, Notification $notification)
+    public function send(RoutesNotifications $notifiable, Notification $notification)
     {
         if (!method_exists($notification, 'toLox24')) {
             throw new CouldNotSendNotification('You must implement the method "toLox24()" in your notification object');
