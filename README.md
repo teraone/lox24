@@ -86,6 +86,13 @@ public function routeNotificationForLox24()
 }
 ```
 
+Do not forget to add the Service Provider:
+```php
+
+    NotificationChannels\Lox24\Lox24ServiceProvider::class
+
+```
+
 
 ### Available methods
 
