@@ -38,13 +38,13 @@ composer require laravel-notification-channels/lox24
 Add your Lox24 Account ID and your Lox24 password to your broadcasting config:
 
 ```php
-// config/services.php
-'broadcasting' =>
+// config/broadcasting.php
+
     'connections' =>
         'lox24' => [
             'accountId' => env('LOX24_ACCOUNT_ID'),
             'password' => env('LOX24_PASSWORD'),
-]
+        ]
 ```
 
 ## Usage
