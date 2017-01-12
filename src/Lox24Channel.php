@@ -23,12 +23,12 @@ class Lox24Channel
     /**
      * Send the given notification.
      *
-     * @param RoutesNotifications $notifiable
+     * @param mixed $notifiable
      * @param Notification $notification
      *
      * @throws CouldNotSendNotification
      */
-    public function send(RoutesNotifications $notifiable, Notification $notification)
+    public function send($notifiable, Notification $notification)
     {
         if (!method_exists($notification, 'toLox24')) {
             throw new CouldNotSendNotification('You must implement the method "toLox24()" in your notification object');
