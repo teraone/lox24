@@ -2,8 +2,7 @@
 
 namespace NotificationChannels\Lox24;
 
-use GuzzleHttp\Client as HttpClient;
-use GuzzleHttp\Exception\ClientException;
+use Illuminate\Notifications\Notifiable;
 use NotificationChannels\Lox24\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Notification;
 
@@ -23,12 +22,12 @@ class Lox24Channel
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param \Illuminate\Notifications\Notification $notification
+     * @param Notifiable $notifiable
+     * @param Notification $notification
      *
-     * @throws \NotificationChannels\Lox24\Exceptions\CouldNotSendNotification
+     * @throws CouldNotSendNotification
      */
-    public function send($notifiable, Notification $notification)
+    public function send(Notifiable $notifiable, Notification $notification)
     {
         if (!method_exists($notification, 'toLox24')) {
             throw new CouldNotSendNotification('You must implement the method "toLox24()" in your notification object');

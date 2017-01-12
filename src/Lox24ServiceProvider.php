@@ -2,7 +2,6 @@
 
 namespace NotificationChannels\Lox24;
 
-use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
 class Lox24ServiceProvider extends ServiceProvider

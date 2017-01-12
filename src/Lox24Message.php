@@ -62,7 +62,7 @@ class Lox24Message
         if ('UTF-8' === mb_detect_encoding($text, 'UTF-8')) {
 
             // set normal UTF-8 encoding for SMS
-            $params['encoding'] = 0;
+            $this->payload['encoding'] = 0;
 
             // Check max length
             if(mb_strlen($text) > self::MAXIMUM_SMS_LENGTH_UTF8) {
@@ -72,7 +72,7 @@ class Lox24Message
         } else {
 
             // set to Unicode SMS
-            $params['encoding'] = 1;
+            $this->payload['encoding'] = 1;
 
             // check max length
             if(mb_strlen($text) > self::MAXIMUM_SMS_LENGTH_UNICODE) {
