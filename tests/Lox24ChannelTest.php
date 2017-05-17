@@ -3,6 +3,8 @@
 namespace NotificationChannels\Lox24\Test;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Notification;
 use \Mockery;
@@ -49,28 +51,13 @@ class Lox24ChannelTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function canSendNotification()
     {
-        $client = Mockery::mock(Client::class);
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $this->responseSuccess)
+        ]);
 
-        $client->shouldReceive('post')->once()
-            ->with(
-                'https://www.lox24.eu/API/httpsms.php'
-                ,
-                [
-                    'form_params'    => [
-                        'service'    => 3325,
-                        'text'       => 'hello',
-                        'to'         => '12345789',
-                        'encoding'   => 0,
-                        'from'       => 'lox24test',
-                        'timestamp'  => 0,
-                        'return'     => 'xml',
-                        'httphead'   => 0,
-                        'action'     => 'send',
-                        'account'     => '123456',
-                        'passwordHash'=> md5(123456),
-                    ],
-                ]
-            )->andReturn(new Response(200,[],$this->responseSuccess));
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
+
 
         $lox24 = new Lox24('123456', 123456, null, $client);
 
